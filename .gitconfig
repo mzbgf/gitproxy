@@ -1,0 +1,6 @@
+[url "http://ghproxy.com/"]
+	insteadOf = https://
+
+[url "http://ghproxy.com/"]
+	insteadOf = http://
+
