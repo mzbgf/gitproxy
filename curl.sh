@@ -5,15 +5,15 @@ if [ -e $outfile ]; then
 else
 	mkdir -p ~/.local/bin
 	echo "#!/bin/env bash
-  curl_path=$(which curl)" >$outfile
-  echo 'curl() {
-mirror_url="http://ghproxy.com/github.com"
-url=$@
-if [[ $url =~ "://github.com" ]]; then
-	url=${url/"http://github.com"/$mirror_url}
-	url=${url/"https://github.com"/$mirror_url}
-fi
-$curl_path $url
+	curl_path=$(which curl)" >$outfile
+	echo 'curl() {
+	mirror_url="http://ghproxy.com/github.com"
+	url=$@
+	if [[ $url =~ "://github.com" ]]; then
+		url=${url/"http://github.com"/$mirror_url}
+		url=${url/"https://github.com"/$mirror_url}
+	fi
+	$curl_path $url
 }
 curl $@' >>$outfile
 	chmod +x $outfile
