@@ -7,12 +7,16 @@ else
 	echo "#!/bin/env bash
 	curl_path=$(which curl)" >$outfile
 	echo 'curl() {
-	mirror_url="http://ghproxy.com/github.com"
+	mirror_url="http://hub.fgit.ml"
+	mirror_raw_url="http://raw.fgit.ml"
 	url=$@
 	if [[ $url =~ "://github.com" ]]; then
 		url=${url/"http://github.com"/$mirror_url}
 		url=${url/"https://github.com"/$mirror_url}
-	fi
+  elif [[ $url =~ "://raw.githubusercontent.com" ]]; then
+    url=${url/"http://raw.githubusercontent.com"/$mirror_raw_url}
+    url=${url/"https://raw.githubusercontent.com"/$mirror_raw_url}
+  fi
 	$curl_path $url
 }
 curl $@' >>$outfile
